@@ -1,11 +1,12 @@
+##Control Flow Example
 counter = 0
 numbers = [1, 7, 3, 4, 5, 2, 6, 0, 9, 8]
 while counter < 10
     if numbers[counter] == 0
         counter += 1
-        next
+        next #skip the rest of the loop and continue with the next iteration
     elsif numbers[counter] % 8 == 0
-        break
+        break #exit the loop
     elsif numbers[counter] % 3 == 0
         puts "Success"
     elsif numbers[counter] % 2 == 0
@@ -16,14 +17,13 @@ while counter < 10
     counter += 1
 end
 
-
+##Recursive Example to show functional elements of the language
 def recursive_sum(numbers, index)
-    if numbers.size == index
+    if numbers.size == index #base case
         return 0
     else
-        return numbers[index] + recursive_sum(numbers, index + 1)
+        return numbers[index] + recursive_sum(numbers, index + 1) #recursive case
     end
 end
 
 puts recursive_sum(numbers, 0)
-
