@@ -27,3 +27,15 @@ def recursive_sum(numbers, index)
 end
 
 puts recursive_sum(numbers, 0)
+
+
+##Feature of Crystal: Null Safety
+##In Crystal, we can have nilable or union types 
+name : String? = nil # String or nil, same thing as String | nil
+
+#Unlike JS/Ruby, we want to avoid errors like undefined method on nil values 
+name = "John"
+puts name.try &.upcase #similar to Kotlin's let operator
+
+name = nil
+puts name.try &.upcase 

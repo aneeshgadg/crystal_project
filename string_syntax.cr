@@ -1,16 +1,16 @@
 # Printing a literal
 puts "Hello World!"
 
-# Variable assignment
+# Variable assignment, automatic type inference as String
 message = "Hello Penny!"
 
-# Printing name of expression/variable, not just value
-p! message
+# Printing name of expression/variable/type, not just value
+p! message, typeof(message)
 
 # Variable reassignment
-message = "Hello Sheldon!"
+message : String = "Hello Sheldon!"
 
-p! message
+p! message, typeof(message)
 
 # Variable reassignment with different type
 message = 73
