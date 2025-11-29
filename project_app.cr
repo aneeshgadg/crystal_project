@@ -100,7 +100,22 @@ def run_null_safety_demo
   puts name.try &.upcase
 end
 
-class Person
+## Abstract classes
+abstract class Animal
+  def speak
+    raise "Subclasses must implement speak" ##Raise an error if the method is not implemented in the subclass
+  end
+end 
+
+## Inheritance
+class Dog < Animal
+  def speak
+    puts "Woof!"
+  end
+end
+
+## Inheritance
+class Person < Animal
   def initialize(name : String, age : Int32, height : Int32) # Constructor with explicit typing
     @name = name
     @age = age
@@ -127,7 +142,29 @@ class Person
   def birthday
     @age += 1
   end
+
+  def speak
+    "Hello, my name is #{@name}"
+  end
 end
+
+## Inheritance
+class Student < Person
+  def initialize(name : String, age : Int32, height : Int32, student_id : Int32)
+    super(name, age, height)
+    @student_id = student_id
+  end
+
+  def student_id
+    @student_id
+  end
+
+  def speak
+    "#{super} and my student ID is #{@student_id}"
+  end
+
+end
+
 
 def run_typing_demo
   puts "=== Static Typing & Classes ==="
@@ -135,6 +172,11 @@ def run_typing_demo
   person = Person.new("John", 25, 75)
   person.birthday
   puts person.name, person.age, person.height, person.human
+  student = Student.new("John", 25, 75, 12345)
+  puts student.name, student.age, student.height, student.human, student.student_id
+  ##Compare the speak method of the person and student classes
+  puts person.speak
+  puts student.speak
 end
 
 DEMOS = {
