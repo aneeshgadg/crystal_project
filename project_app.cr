@@ -179,11 +179,31 @@ def run_typing_demo
   puts student.speak
 end
 
+def run_parallelism_demo
+  puts "=== Parallelism ==="
+  puts "-------------------"
+  channel = Channel(String).new
+  puts "Starting parallel tasks..."
+  10.times do |i|
+    spawn do
+      sleep (rand * 0.4).seconds
+      channel.send("Task #{i} completed")
+    end
+  end
+
+  10.times do
+    message = channel.receive
+    puts message
+  end
+  puts "All tasks completed."
+end
+
 DEMOS = {
   "1" => {label: "String syntax & operations", action: -> { run_strings_demo }},
   "2" => {label: "Numerics & comparisons", action: -> { run_numerics_demo }},
   "3" => {label: "Control flow & null safety", action: -> { run_control_flow_demo }},
   "4" => {label: "Static typing & classes", action: -> { run_typing_demo }},
+  "5" => {label: "Parallelism", action: -> { run_parallelism_demo }},
   "q" => {label: "Quit", action: -> { exit 0 }},
 }
 
