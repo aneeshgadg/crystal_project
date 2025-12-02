@@ -85,6 +85,13 @@ def run_control_flow_demo
         counter += 1
     end
 
+    ##Sum of numbers in the array
+    sum = 0
+    numbers.each do |number| #each is a method that iterates over the array, this iterator is used instead of a for loop
+        sum += number
+    end
+    puts "Sum of numbers: #{sum}"
+
   run_null_safety_demo
 end
 
