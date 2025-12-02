@@ -205,12 +205,44 @@ def run_parallelism_demo
   puts "All tasks completed."
 end
 
+def run_functional_demo
+  puts "=== Functional Programming Basics ==="
+  puts "-------------------------------------"
+
+  numbers = [1, 2, 3, 4, 5, 6]
+
+  # map: transform each element
+  doubled = numbers.map { |n| n * 2 }
+  p! doubled
+
+  # select: filter elements based on a condition
+  evens = numbers.select { |n| n.even? }
+  p! evens
+
+  # reduce: combine values into a single result
+  sum = numbers.reduce(0) { |acc, n| acc + n }
+  p! sum
+
+  # lambda (Proc) example
+  square = ->(x : Int32) { x * x }
+  p! square.call(5)
+
+  # method chaining (functional style flow)
+  chained =
+    numbers
+      .select { |n| n.odd? }
+      .map    { |n| n * n }
+      .reduce(0) { |acc, n| acc + n }
+  p! chained
+end
+
 DEMOS = {
   "1" => {label: "String syntax & operations", action: -> { run_strings_demo }},
   "2" => {label: "Numerics & comparisons", action: -> { run_numerics_demo }},
   "3" => {label: "Control flow & null safety", action: -> { run_control_flow_demo }},
   "4" => {label: "Static typing & classes", action: -> { run_typing_demo }},
   "5" => {label: "Parallelism", action: -> { run_parallelism_demo }},
+  "6" => {label: "Functional programming", action: -> { run_functional_demo }},
   "q" => {label: "Quit", action: -> { exit 0 }},
 }
 
@@ -239,4 +271,3 @@ loop do
 end
 
 puts "Goodbye!"
-
